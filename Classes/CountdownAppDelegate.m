@@ -19,15 +19,6 @@
     [defaults registerDefaults:defaultsDict];
 }
 
-- (IBAction)restartCountdown:(id)sender {
-    if (fireworks) {
-        [fireworks release];
-        fireworks = 0;
-        [countdown release];
-        countdown = [[EZCountdown alloc] initWithView:mainView];
-    }
-}
-
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     [window setContentView:mainView];
 
@@ -49,7 +40,8 @@
     return;
 }
 
-- (void)countdownDidEnd:(NSNotification *) notification {
+- (IBAction)test:(id)sender {
+    [timeView  setHidden:YES];
     NSRect screenRect = [[NSScreen mainScreen] frame];
 
     fireworks = [[EZFireworks alloc] initWithView:mainView andRect:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
@@ -110,7 +102,7 @@
 - (void)setMoviePath:(NSOpenPanel*)panel returnCode:(int)returnCode contextInfo:(void *)contextInfo {
     [panel orderOut:self];
 
-    if (returnCode != NSOKButton)
+    if (returnCode != NSModalResponseOK)
         return;
 
     NSArray* paths = [panel URLs];

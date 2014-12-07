@@ -25,53 +25,18 @@
 }
 
 - (void)tick {
-    NSString *fontName = [defaults objectForKey:@"fontName"];
-    float fontBaseSize = [defaults floatForKey:@"fontSize"];
-    [timeView setFont:[NSFont fontWithName:fontName size:fontBaseSize]];
-
-    NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
-    end = [[defaults objectForKey:@"endDate"] timeIntervalSinceReferenceDate] + 1;
-
-    NSTimeInterval interval = end - now;
-    int diff = (int)interval;
-
-    int seconds = diff % 60;
-    int minutes = (diff / 60) % 60;
-    int hours = (diff / 3600) % 24;
-    int days = (diff / (3600 * 24));
-
     NSString *output;
-
-    if (days > 0) {
-        output = [NSString stringWithFormat:@"%d:%02d:%02d:%02d", days, hours, minutes, seconds];
-    } else if (hours > 0) {
-        output = [NSString stringWithFormat:@"%d:%02d:%02d", hours, minutes, seconds];
-    } else if (minutes > 0) {
-        [timeView setFont:[NSFont fontWithName:fontName size:fontBaseSize * 1.25]];
-        output = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
-    } else if (seconds > 0) {
-
-        if (seconds >= 10) {
-            [timeView setFont:[NSFont fontWithName:fontName size:fontBaseSize * 1.5]];
-        } else {
-            [timeView setFont:[NSFont fontWithName:fontName size:fontBaseSize * 2]];
-        }
-
-        output = [NSString stringWithFormat:@"%d", seconds];
-    } else {
-        [self stop];
-        [timeView setFont:[NSFont fontWithName:fontName size:fontBaseSize / 2]];
-        [timeView setTextColor:[NSColor whiteColor]];
-        output = [defaults stringForKey:@"endMsg"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"countdownDidEnd" object:nil];
-    }
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:now];
+    
+    int hour = 24 - [components hour] - 1;
+    int minute = 60 - [components minute] - 1;
+    int second = 60 - [components second] - 1;
+    
+    output = [NSString stringWithFormat:@"%d:%d:%d", hour, minute, second];
 
     [timeView setStringValue:output];
-}
-
-- (void)stop {
-    [timer invalidate];
-    timer = nil;
 }
 
 - (void)dealloc {

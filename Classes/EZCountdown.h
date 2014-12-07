@@ -16,6 +16,5 @@
 }
 - (id)initWithView:(NSView *)aView;
 - (void)tick;
-- (void)stop;
 
 @end

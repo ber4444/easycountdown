@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		5053126E12CCEF600042A0FB /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5053126D12CCEF600042A0FB /* Quartz.framework */; };
 		505312E912CCF1FC0042A0FB /* tspark.png in Resources */ = {isa = PBXBuildFile; fileRef = 505312E812CCF1FC0042A0FB /* tspark.png */; };
 		5056F6FB14C9857000CDA401 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5056F6FA14C9857000CDA401 /* Defaults.plist */; };
-		506A01B614AF35D100C3A9F4 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506A01B514AF35D100C3A9F4 /* QTKit.framework */; };
 		5078B62B148BF8800085A6BB /* CountdownAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5078B626148BF8800085A6BB /* CountdownAppDelegate.m */; };
 		5078B62C148BF8800085A6BB /* EZCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 5078B628148BF8800085A6BB /* EZCountdown.m */; };
 		5078B62D148BF8800085A6BB /* EZFireworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 5078B62A148BF8800085A6BB /* EZFireworks.m */; };
@@ -19,6 +17,8 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		CEDB9A4B1A34B6F800FBB50E /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDB9A4A1A34B6F800FBB50E /* Quartz.framework */; };
+		CEDB9A4D1A34B70500FBB50E /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDB9A4C1A34B70500FBB50E /* QTKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +44,8 @@
 		50D342261691E977009CEDCA /* MDVerticallyCenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDVerticallyCenteredTextFieldCell.m; path = Classes/MDVerticallyCenteredTextFieldCell.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Countdown-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Countdown-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEDB9A4A1A34B6F800FBB50E /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
+		CEDB9A4C1A34B70500FBB50E /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +53,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDB9A4D1A34B70500FBB50E /* QTKit.framework in Frameworks */,
+				CEDB9A4B1A34B6F800FBB50E /* Quartz.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				5053126E12CCEF600042A0FB /* Quartz.framework in Frameworks */,
-				506A01B614AF35D100C3A9F4 /* QTKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +141,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEDB9A4C1A34B70500FBB50E /* QTKit.framework */,
+				CEDB9A4A1A34B6F800FBB50E /* Quartz.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -171,6 +175,8 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Countdown" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -243,7 +249,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -252,7 +260,10 @@
 				GCC_PREFIX_HEADER = Countdown_Prefix.pch;
 				INFOPLIST_FILE = "Countdown-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Countdown;
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -260,13 +271,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Countdown_Prefix.pch;
 				INFOPLIST_FILE = "Countdown-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Countdown;
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};

@@ -23,7 +23,7 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSView *mainView;
 
-- (IBAction)restartCountdown:(id)sender;
+- (IBAction)test:(id)sender;
 - (IBAction)toggleFullScreen:(id)sender;
 - (IBAction)selectMoviePath:(id)sender;
 - (void)changeFont:(id)sender;

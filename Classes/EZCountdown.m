@@ -16,9 +16,12 @@
                      userInfo:NULL repeats:YES];
 
     viewSize = [theView frame].size;
+    
+    [timeView setDrawsBackground:NO];
 
-    [timeView setTextColor:[NSColor blackColor]];
-
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"intro" ofType:@"html"];
+    [timeView setMainFrameURL:path];
+    
     defaults = [NSUserDefaults standardUserDefaults];
 
     return self;
@@ -34,9 +37,12 @@
     int minute = 60 - [components minute] - 1;
     int second = 60 - [components second] - 1;
     
-    output = [NSString stringWithFormat:@"%d:%d:%d", hour, minute, second];
+    output = [NSString stringWithFormat:@"2015 Begins in: %02d Hrs %02d Min %02d Sec", hour, minute, second];
 
-    [timeView setStringValue:output];
+    if (hour == 0 && minute == 0 && second == 0)
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"countdownDidEnd" object:nil];
+    else
+        [[timeView windowScriptObject] evaluateWebScript: [NSString stringWithFormat:@"dummy('%@')", output]];
 }
 
 - (void)dealloc {

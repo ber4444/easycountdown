@@ -2,29 +2,27 @@
 // 2010-2014 easyb
 
 #import <Cocoa/Cocoa.h>
+#import <WebKit/WebKit.h>
+#import "AppWindow.h"
+#import "EZCountdown.h"
+#import "NoClickWebView.h"
 
 @class EZCountdown;
-@class EZFireworks;
 
 @interface CountdownAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
+    AppWindow *window;
     NSView *mainView;
     QTMovieView *movieView;
-
     NSUserDefaults *defaults;
     QTMovie *movie;
-
-    IBOutlet NSTextField *timeView;
-
+    IBOutlet NoClickWebView *timeView;
     EZCountdown *countdown;
-    EZFireworks *fireworks;
 }
 
-@property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet AppWindow *window;
 @property (assign) IBOutlet NSView *mainView;
 
 - (IBAction)test:(id)sender;
-- (IBAction)toggleFullScreen:(id)sender;
 - (IBAction)selectMoviePath:(id)sender;
 - (void)changeFont:(id)sender;
 - (void)showMovie;

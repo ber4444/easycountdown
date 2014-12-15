@@ -5,9 +5,6 @@
 
 #import "CountdownAppDelegate.h"
 
-#import "EZCountdown.h"
-#import "EZFireworks.h"
-
 @implementation CountdownAppDelegate
 
 @synthesize window, mainView;
@@ -21,9 +18,11 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     [window setContentView:mainView];
-
+    [window setBackgroundColor:[NSColor clearColor]];
+    [window  setOpaque:NO];
+    
     countdown = [[EZCountdown alloc] initWithView:mainView];
-
+        
     [[NSNotificationCenter defaultCenter]
         addObserver:self selector:@selector(countdownDidEnd:) name:@"countdownDidEnd"
         object:nil];
@@ -40,17 +39,17 @@
     return;
 }
 
+- (void)countdownDidEnd:(NSNotification *) notification {
+    [countdown release];
+    countdown = nil;
+    if ([defaults stringForKey:@"moviePath"])
+        [self showMovie];
+}
+
 - (IBAction)test:(id)sender {
     [timeView  setHidden:YES];
-    NSRect screenRect = [[NSScreen mainScreen] frame];
-
-    fireworks = [[EZFireworks alloc] initWithView:mainView andRect:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
-
-    if ([defaults integerForKey:@"timeToMovie"] && [defaults stringForKey:@"moviePath"]) {
-
-        [NSTimer scheduledTimerWithTimeInterval:[defaults integerForKey:@"timeToMovie"]
-                 target:self selector:@selector(showMovie) userInfo:NULL repeats:NO];
-    }
+    if ([defaults stringForKey:@"moviePath"])
+        [self showMovie];
 }
 
 - (void)showMovie {
@@ -70,18 +69,8 @@
     // TODO: find better solution
     window.contentView = movieView;
 
-    if ([mainView isInFullScreenMode]) {
-        [window.contentView enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
-        [mainView exitFullScreenModeWithOptions:nil];
-    }
-}
-
-- (IBAction)toggleFullScreen:(id)sender {
-    if ([window.contentView isInFullScreenMode] == NO) {
-        [window.contentView enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
-    } else {
-        [window.contentView exitFullScreenModeWithOptions:nil];
-    }
+    [window.contentView enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
+    [mainView exitFullScreenModeWithOptions:nil];
 }
 
 - (IBAction)selectMoviePath:(id)sender {
@@ -125,7 +114,6 @@
 
 - (void)dealloc {
     [countdown release];
-    [fireworks release];
     [movieView release];
     [movie release];
     [super dealloc];

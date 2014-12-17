@@ -17,7 +17,7 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    [window setContentView:mainView];
+    [[window contentView] addSubview:mainView];
     [window setBackgroundColor:[NSColor clearColor]];
     [window  setOpaque:NO];
     

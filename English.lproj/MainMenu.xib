@@ -50,8 +50,8 @@
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
                 <webView autoresizesSubviews="NO" canDrawConcurrently="YES" maintainsBackForwardList="NO" id="733" customClass="NoClickWebView">
-                    <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                    <autoresizingMask key="autoresizingMask"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1194" height="894"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                     <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12" plugInsEnabled="NO" javaEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO" allowsAnimatedImages="NO" allowsAnimatedImageLooping="NO">
                         <nil key="identifier"/>
                     </webPreferences>
@@ -63,7 +63,7 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="61" y="150" width="1920" height="1080"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" autoresizesSubviews="NO" canDrawConcurrently="YES" id="541">
+            <view key="contentView" autoresizesSubviews="NO" wantsLayer="YES" canDrawConcurrently="YES" id="541">
                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             </view>

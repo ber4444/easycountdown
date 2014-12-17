@@ -15,7 +15,11 @@
                     document.getElementById("counter").innerHTML = text;
                 }
                 function zoom(percent) {
-                    document.getElementById("counter").style.zoom += percent;
+                    var zoomText = document.getElementById("counter").style.zoom;
+                    var zoom = parseFloat(zoomText);
+                    zoom += parseFloat(percent);
+                    
+                    document.getElementById("counter").style.zoom = zoom;
                 }
                 //]]>
                 </script>

@@ -2,4 +2,5 @@
 *.pbxuser
 .DS_Store
 build
-Countdown.xcodeproj
+Countdown.xcodeproj/project.xcworkspace
+Countdown.xcodeproj/xcuserdata

@@ -48,7 +48,8 @@
 - (BOOL)performKeyEquivalent:(NSEvent *)evento {
     unichar keyChar = ([[evento charactersIgnoringModifiers] characterAtIndex: 0]);
     BOOL retVal = NO;
-    NoClickWebView *aWebView = [[self.contentView subviews] lastObject];
+    id mainView = [[self.contentView subviews] lastObject];
+    NoClickWebView *aWebView = [[mainView subviews] lastObject];
     switch(keyChar) {
         case '+':
             [[aWebView windowScriptObject] evaluateWebScript: [NSString stringWithFormat:@"zoom('%0.1f')", 0.1]];

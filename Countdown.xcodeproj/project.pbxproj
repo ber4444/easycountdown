@@ -18,7 +18,6 @@
 		CED3B41B1A3A3B67004FC3E2 /* AppWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CED3B41A1A3A3B67004FC3E2 /* AppWindow.m */; };
 		CED3B41E1A3F12C4004FC3E2 /* NoClickWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = CED3B41D1A3F12C4004FC3E2 /* NoClickWebView.m */; };
 		CEDB9A4B1A34B6F800FBB50E /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDB9A4A1A34B6F800FBB50E /* Quartz.framework */; };
-		CEDB9A4D1A34B70500FBB50E /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDB9A4C1A34B70500FBB50E /* QTKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +42,6 @@
 		CED3B41C1A3F12C4004FC3E2 /* NoClickWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoClickWebView.h; path = Classes/NoClickWebView.h; sourceTree = "<group>"; };
 		CED3B41D1A3F12C4004FC3E2 /* NoClickWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoClickWebView.m; path = Classes/NoClickWebView.m; sourceTree = "<group>"; };
 		CEDB9A4A1A34B6F800FBB50E /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
-		CEDB9A4C1A34B70500FBB50E /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +50,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE81431C1A386671009BB981 /* WebKit.framework in Frameworks */,
-				CEDB9A4D1A34B70500FBB50E /* QTKit.framework in Frameworks */,
 				CEDB9A4B1A34B6F800FBB50E /* Quartz.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
@@ -138,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				CE81431B1A386671009BB981 /* WebKit.framework */,
-				CEDB9A4C1A34B70500FBB50E /* QTKit.framework */,
 				CEDB9A4A1A34B6F800FBB50E /* Quartz.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
@@ -237,6 +233,8 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = ("-framework", "AVFoundation", "-framework", "AVKit", "-framework", "CoreMedia");
+
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -249,16 +247,17 @@
 				GCC_PREFIX_HEADER = Countdown_Prefix.pch;
 				INFOPLIST_FILE = "Countdown-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = Countdown;
 				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = ("-framework", "AVFoundation", "-framework", "AVKit", "-framework", "CoreMedia");
+
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -267,16 +266,17 @@
 				GCC_PREFIX_HEADER = Countdown_Prefix.pch;
 				INFOPLIST_FILE = "Countdown-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = Countdown;
 				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = ("-framework", "AVFoundation", "-framework", "AVKit", "-framework", "CoreMedia");
+
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -290,6 +290,8 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = ("-framework", "AVFoundation", "-framework", "AVKit", "-framework", "CoreMedia");
+
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

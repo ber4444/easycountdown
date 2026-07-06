@@ -11,12 +11,12 @@
 @implementation AppWindow
 
 - (id) initWithContentRect: (NSRect) contentRect
-                 styleMask: (NSUInteger) aStyle
+                 styleMask: (NSWindowStyleMask) aStyle
                    backing: (NSBackingStoreType) bufferingType
                      defer: (BOOL) flag
 {
     if (![super initWithContentRect: contentRect
-                          styleMask: NSBorderlessWindowMask
+                          styleMask: NSWindowStyleMaskBorderless
                             backing: bufferingType
                               defer: flag]) return nil;
     [self setMovableByWindowBackground:TRUE];
@@ -30,14 +30,16 @@
 }
 
 - (void)mouseDown:(NSEvent *)theEvent{
-    currentLocation = [self convertBaseToScreen:[self mouseLocationOutsideOfEventStream]];
+    NSRect mouseRect = NSMakeRect([self mouseLocationOutsideOfEventStream].x, [self mouseLocationOutsideOfEventStream].y, 0, 0);
+    currentLocation = [self convertRectToScreen:mouseRect].origin;
     
     offsetX = currentLocation.x - [self frame].origin.x;
     offsetY = currentLocation.y - [self frame].origin.y;
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent{
-    currentLocation = [self convertBaseToScreen:[self mouseLocationOutsideOfEventStream]];
+    NSRect mouseRect = NSMakeRect([self mouseLocationOutsideOfEventStream].x, [self mouseLocationOutsideOfEventStream].y, 0, 0);
+    currentLocation = [self convertRectToScreen:mouseRect].origin;
     
     newOrigin.x = currentLocation.x - offsetX;
     newOrigin.y = currentLocation.y - offsetY;

@@ -12,9 +12,9 @@
 @interface CountdownAppDelegate : NSObject <NSApplicationDelegate> {
     AppWindow *window;
     NSView *mainView;
-    QTMovieView *movieView;
+    AVPlayerView *movieView;
     NSUserDefaults *defaults;
-    QTMovie *movie;
+    AVPlayer *movie;
     IBOutlet NoClickWebView *timeView;
     EZCountdown *countdown;
 }

@@ -1,7 +1,8 @@
 // Easy's Countdown
 // 2010-2014 easyb
 
-#import <QTKit/QTKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
 
 #import "CountdownAppDelegate.h"
 
@@ -54,23 +55,34 @@
 
 - (void)showMovie {
     NSString *fileName = [defaults stringForKey:@"moviePath"];
-    movie = [QTMovie movieWithFile:fileName error:nil];
-    NSDictionary *attrs = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES],
-                                                @"QTMovieLoopsAttribute", nil];
-    [movie setMovieAttributes:attrs];
-    [movie autoplay];
+    NSURL *fileURL = [NSURL fileURLWithPath:fileName];
+    movie = [AVPlayer playerWithURL:fileURL];
+    
+    // Loop the video
+    movie.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:[movie currentItem]];
+    
+    [movie play];
 
     NSRect screenRect = [[NSScreen mainScreen] frame];
-    movieView = [[QTMovieView alloc] init];
+    movieView = [[AVPlayerView alloc] init];
     [movieView setFrame:screenRect];
-    [movieView setMovie:movie];
-    [movieView setPreservesAspectRatio:YES];
+    [movieView setPlayer:movie];
+    [movieView setControlsStyle:AVPlayerViewControlsStyleNone];
 
     // TODO: find better solution
     window.contentView = movieView;
 
     [window.contentView enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
     [mainView exitFullScreenModeWithOptions:nil];
+}
+
+- (void)playerItemDidReachEnd:(NSNotification *)notification {
+    AVPlayerItem *p = [notification object];
+    [p seekToTime:kCMTimeZero completionHandler:nil];
 }
 
 - (IBAction)selectMoviePath:(id)sender {

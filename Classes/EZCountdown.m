@@ -31,18 +31,38 @@
     NSString *output;
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:now];
     
-    int hour = 24 - [components hour] - 1;
-    int minute = 60 - [components minute] - 1;
-    int second = 60 - [components second] - 1;
+    NSDateComponents *currentComponents = [calendar components:NSCalendarUnitYear fromDate:now];
+    NSInteger nextYear = [currentComponents year] + 1;
     
-    output = [NSString stringWithFormat:@"2015 Begins in: %02d Hrs %02d Min %02d Sec", hour, minute, second];
+    NSDateComponents *newYearComponents = [[[NSDateComponents alloc] init] autorelease];
+    [newYearComponents setYear:nextYear];
+    [newYearComponents setMonth:1];
+    [newYearComponents setDay:1];
+    [newYearComponents setHour:0];
+    [newYearComponents setMinute:0];
+    [newYearComponents setSecond:0];
+    
+    NSDate *newYearDate = [calendar dateFromComponents:newYearComponents];
+    
+    NSDateComponents *difference = [calendar components:(NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:now toDate:newYearDate options:0];
+    
+    NSInteger day = [difference day];
+    NSInteger hour = [difference hour];
+    NSInteger minute = [difference minute];
+    NSInteger second = [difference second];
+    
+    if (day > 0) {
+        output = [NSString stringWithFormat:@"%ld Begins in: %ld Days %02ld Hrs %02ld Min %02ld Sec", (long)nextYear, (long)day, (long)hour, (long)minute, (long)second];
+    } else {
+        output = [NSString stringWithFormat:@"%ld Begins in: %02ld Hrs %02ld Min %02ld Sec", (long)nextYear, (long)hour, (long)minute, (long)second];
+    }
 
-    if (hour == 0 && minute == 0 && second == 0)
+    if (day == 0 && hour == 0 && minute == 0 && second == 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"countdownDidEnd" object:nil];
-    else
+    } else {
         [[timeView windowScriptObject] evaluateWebScript: [NSString stringWithFormat:@"dummy('%@')", output]];
+    }
 }
 
 - (void)dealloc {

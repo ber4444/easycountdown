@@ -1,5 +1,5 @@
 // Easy's Countdown
-// 2010-2014 easyb
+// 2010-2018 easyb
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
@@ -25,6 +25,8 @@
 - (IBAction)test:(id)sender;
 - (IBAction)selectMoviePath:(id)sender;
 - (void)changeFont:(id)sender;
+- (void)changeAttributes:(id)sender;
+- (void)changeDocumentBackgroundColor:(id)sender;
 - (void)showMovie;
 - (void)setMoviePath:(NSOpenPanel*)panel returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 

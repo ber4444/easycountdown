@@ -1,5 +1,5 @@
 // Easy's Countdown
-// 2010-2014 easyb
+// 2010-2018 easyb
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
